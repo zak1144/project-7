@@ -37,8 +37,22 @@ function addPhraseToDisplay(letterArray){
         if(letterArray[i] != ' '){
             li.className = 'letter';
         }
+        else {
+            li.className = 'space';
+        }
 
     }
 }
 console.log(letterArray);
 addPhraseToDisplay(letterArray);
+
+keys.addEventListener('click', (e) => {
+function checkLetter(buttonClicked) {
+    const items = document.querySelectorAll('.letter');
+    for (let i = 0; i< letterArray.length; i+= 1) {
+        if (e.target === 'BUTTON'){
+
+        }
+    }
+}
+});
