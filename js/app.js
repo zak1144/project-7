@@ -50,17 +50,14 @@ addPhraseToDisplay(letterArray);
 //the class 'letter' then add another class 'show' to it  
 function checkLetter(letterGuessed) {
     const items = document.querySelectorAll('.letter');
-
+    letterFound = false;
     for (let i = 0; i< items.length; i+= 1) {
         if (items[i].innerHTML === letterGuessed.innerHTML){
             items[i].classList.add('show');
-        }
-        else if (items[i].innerHTML !== letterGuessed.innerHTML){
-            return null;
-        }
-        
-
+            letterFound = true;
+        }   
     }
+    return letterFound ? letterGuessed.innerHTML : null;
 }
 function checkWin(){
     const show = document.querySelectorAll('.show');
@@ -83,8 +80,8 @@ keys.addEventListener('click', (e) => {
         buttonClicked.classList.add('chosen');
         buttonClicked.disabled = true;
         let letterFound = checkLetter(buttonClicked);
-    }
-     if(letterFound = null) {
+    
+     if(letterFound === null) {
         missed += 1;
     }
     
@@ -93,9 +90,29 @@ keys.addEventListener('click', (e) => {
         const ol = tries.parentNode;
         ol.removeChild(tries);
     }
+}
     checkWin();
     
    
 });
 
 
+/*
+
+keys.addEventListener('click', (e) => {
+    const buttonClicked = e.target;
+    if (buttonClicked.tagName === 'BUTTON'){
+        buttonClicked.classList.add('chosen');
+        buttonClicked.disabled = true;
+        let letterFound = checkLetter(buttonClicked);
+    }
+     if(letterFound === null) {
+        missed += 1;
+    }
+    if(missed >= 1 && missed <= 5){
+        const heart = tries[tries.length-missed];
+        heart.getElementsByTagName('img')[0].src = 'images/lostHeart.png';
+    }
+    checkWin();
+});
+*/
