@@ -55,7 +55,7 @@ function checkLetter(letterGuessed) {
         if (items[i].innerHTML === letterGuessed.innerHTML){
             items[i].classList.add('show');
         }
-        else if (items[i].innerHTML === letterGuessed.innerHTML){
+        else if (items[i].innerHTML !== letterGuessed.innerHTML){
             return null;
         }
         
