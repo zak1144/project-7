@@ -41,14 +41,13 @@ function addPhraseToDisplay(letterArray){
         else {
             li.className = 'space';
         }
-
     }
 }
 console.log(letterArray);
 addPhraseToDisplay(letterArray);
 
 //function checks all the letters in list items and if they have
-//the class letter then add another class show to it  
+//the class 'letter' then add another class 'show' to it  
 function checkLetter(letterGuessed) {
     const items = document.querySelectorAll('.letter');
 
@@ -56,11 +55,13 @@ function checkLetter(letterGuessed) {
         if (items[i].innerHTML === letterGuessed.innerHTML){
             items[i].classList.add('show');
         }
+        else if (items[i].innerHTML === letterGuessed.innerHTML){
+            return null;
+        }
         
+
     }
 }
-
-
 function checkWin(){
     const show = document.querySelectorAll('.show');
     const letter = document.querySelectorAll('.letter');
@@ -68,11 +69,10 @@ function checkWin(){
         startGame.classList.add('win');
     }
     else if (missed >= 5){
-        startGame.classList.add('lose');
-        document.write('You Have Lost.Try Again?');
+        startGame.classList.add('lose');     
+    }
     }
 
-    }
 //event listener on all the buttons so when anyof them clicked
 // they get class of 'chosen' added to them and thier state is disabled
 //and the clicked button is stored in the variable
@@ -82,15 +82,19 @@ keys.addEventListener('click', (e) => {
     if (buttonClicked.tagName === 'BUTTON'){
         buttonClicked.classList.add('chosen');
         buttonClicked.disabled = true;
-        const letterFound = checkLetter(buttonClicked);
+        let letterFound = checkLetter(buttonClicked);
     }
-    else if(letterFound === null) {
-        const tries = scoreboard.querySelectorAll('.tries')[0];
-        const scoreboard = tries.parentNode;
-        scoreboard.removeChild(tries);
+     if(letterFound = null) {
         missed += 1;
     }
+    
+    if(missed >= 1 && missed <= 5){
+        const tries = document.querySelectorAll('.tries')[0];
+        const ol = tries.parentNode;
+        ol.removeChild(tries);
+    }
     checkWin();
+    
    
 });
 
