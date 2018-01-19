@@ -6,7 +6,7 @@ let missed = 0;
 const startGame = document.querySelector('#overlay');
 
 startGame.addEventListener('click', (e) => {
-    startGame.style.display = 'none' ;
+    startGame.style.visibility = 'hidden' ;
 });
 
 let phrases = [
@@ -62,11 +62,18 @@ function checkLetter(letterGuessed) {
 function checkWin(){
     const show = document.querySelectorAll('.show');
     const letter = document.querySelectorAll('.letter');
+    
     if(show.length === letter.length){
         startGame.classList.add('win');
+        alert('You Won!!');
     }
     else if (missed >= 5){
-        startGame.classList.add('lose');     
+        startGame.classList.add('lose');
+        //alert('You loose, Better Luck Next Time!!');   
+            if(startGame.className === 'lose'){
+            startGame.style.visibility = 'visible' ;
+            alert('You loose, Better Luck Next Time!!'); 
+        } 
     }
     }
 
@@ -81,19 +88,19 @@ keys.addEventListener('click', (e) => {
         buttonClicked.disabled = true;
         let letterFound = checkLetter(buttonClicked);
     
-     if(letterFound === null) {
-        missed += 1;
+        if(letterFound === null) {
+         //console.log(letterFound);
+        // console.log(missed);
+            missed += 1;
+            if(missed >= 1 && missed <= 5){
+                const tries = document.querySelectorAll('.tries')[0];
+                const ol = tries.parentNode;
+                ol.removeChild(tries);
+            }
+        }
     }
-    
-    if(missed >= 1 && missed <= 5){
-        const tries = document.querySelectorAll('.tries')[0];
-        const ol = tries.parentNode;
-        ol.removeChild(tries);
-    }
-}
     checkWin();
-    
-   
+
 });
 
 
