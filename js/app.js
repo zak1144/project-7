@@ -1,12 +1,14 @@
 const keys = document.querySelector('#qwerty');
-const phrase = document.querySelector('.btn__reset');
 const ul = document.querySelector('#phrase ul');
 let missed = 0;
 
-const startGame = document.querySelector('#overlay');
+const startGame = document.querySelector('.btn__reset');
+const overlay = document.querySelector('#overlay');
+const title = document.querySelector('.title');
 
-startGame.addEventListener('click', (e) => {
-    startGame.style.visibility = 'hidden' ;
+//to start the game and hide the start screen
+    startGame.addEventListener('click', (e) => {
+    overlay.style.visibility = 'hidden' ;
 });
 
 let phrases = [
@@ -64,19 +66,45 @@ function checkWin(){
     const letter = document.querySelectorAll('.letter');
     
     if(show.length === letter.length){
-        startGame.classList.add('win');
-        alert('You Won!!');
+        overlay.classList.add('win');
+        overlay.className === 'win';
+        overlay.style.visibility = 'visible' ;
+        startGame.innerHTML = 'Reset';
+        title.innerHTML = 'You Win!!';
     }
-    else if (missed >= 5){
-        startGame.classList.add('lose');
-        //alert('You loose, Better Luck Next Time!!');   
-            if(startGame.className === 'lose'){
-            startGame.style.visibility = 'visible' ;
-            alert('You loose, Better Luck Next Time!!'); 
-        } 
+    if (missed >= 5){
+            overlay.classList.add('lose');
+            overlay.className === 'lose';
+            overlay.style.visibility = 'visible' ;
+            startGame.innerHTML = 'Reset';
+            title.innerHTML = 'You loose,Try Again!!'; 
+        
     }
     }
+    // new array after reset button clicked
 
+    let phrasesReset = [
+        "tomorrow never comes",
+        "live and let live",
+        "live your life as you can leave a legacy",
+        "every saint has a past",
+        "every sinner has a future"
+    ];
+    
+    
+  /*   
+    if(startGame.innerHTML === 'Reset'){
+        let resetRandom = (getRandomPhraseArray(phrasesReset));
+        console.log(resetRandom);
+        addPhraseToDisplay(resetRandom);
+        phrases.style.visibility = 'hidden';
+        let missed = 0;
+        startGame.addEventListener('click', (e) => {
+        overlay.style.visibility = 'hidden' ;
+        
+    });
+}
+*/
 //event listener on all the buttons so when anyof them clicked
 // they get class of 'chosen' added to them and thier state is disabled
 //and the clicked button is stored in the variable
