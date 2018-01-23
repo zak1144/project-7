@@ -16,7 +16,12 @@ let phrases = [
     "hafsah",
     "ebrahim",
     "dubai",
-    "disneyland"
+    "disneyland",
+    "tomorrow never comes",
+    "live and let live",
+    "live your life as you can leave a legacy",
+    "every saint has a past",
+    "every sinner has a future"
 ];
 //function to select a random indexitem of an array 
 //and split into a sub array of a string
@@ -78,33 +83,8 @@ function checkWin(){
             overlay.style.visibility = 'visible' ;
             startGame.innerHTML = 'Reset';
             title.innerHTML = 'You loose,Try Again!!'; 
-        
+        }
     }
-    }
-    // new array after reset button clicked
-
-    let phrasesReset = [
-        "tomorrow never comes",
-        "live and let live",
-        "live your life as you can leave a legacy",
-        "every saint has a past",
-        "every sinner has a future"
-    ];
-    
-    
-  /*   
-    if(startGame.innerHTML === 'Reset'){
-        let resetRandom = (getRandomPhraseArray(phrasesReset));
-        console.log(resetRandom);
-        addPhraseToDisplay(resetRandom);
-        phrases.style.visibility = 'hidden';
-        let missed = 0;
-        startGame.addEventListener('click', (e) => {
-        overlay.style.visibility = 'hidden' ;
-        
-    });
-}
-*/
 //event listener on all the buttons so when anyof them clicked
 // they get class of 'chosen' added to them and thier state is disabled
 //and the clicked button is stored in the variable
@@ -124,30 +104,31 @@ keys.addEventListener('click', (e) => {
                 const tries = document.querySelectorAll('.tries')[0];
                 const ol = tries.parentNode;
                 ol.removeChild(tries);
+                //let heartIcon = document.querySelectorAll('img');
+                //heartIcon.src = '../images/lostHeart.png';
             }
         }
     }
     checkWin();
 
 });
-
-
-/*
-
-keys.addEventListener('click', (e) => {
-    const buttonClicked = e.target;
-    if (buttonClicked.tagName === 'BUTTON'){
-        buttonClicked.classList.add('chosen');
-        buttonClicked.disabled = true;
-        let letterFound = checkLetter(buttonClicked);
-    }
-     if(letterFound === null) {
-        missed += 1;
-    }
-    if(missed >= 1 && missed <= 5){
-        const heart = tries[tries.length-missed];
-        heart.getElementsByTagName('img')[0].src = 'images/lostHeart.png';
-    }
-    checkWin();
-});
-*/
+    // event listener if reset button is pressed
+    
+    startGame.addEventListener('click', (e) => {
+        if( e.target.textContent === 'Reset'){       
+            overlay.classList.remove('win');
+            overlay.classList.remove('lose');
+            missed = 0;
+            ul.innerHTML = '';
+        
+        //for (let i = 0; i<tries.length; i+= 1)
+            
+            let heartIcon = document.querySelectorAll('img')[0];
+            heartIcon.src = '../images/liveHeart.png';
+        
+        addPhraseToDisplay(letterArray);
+        const button = document.querySelectorAll('#qwerty button')
+        button.classList.remove('chosen');
+        button.disabled = false;
+        }    
+    });
