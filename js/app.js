@@ -140,14 +140,18 @@ startGame.addEventListener('click', (e) => {
         
         if(missed < 5){
             const scoreboard = document.querySelector('#scoreboard');
-            const heart = document.createElement('img');
-            const li = document.createElement('li');
-            const ol = document.querySelector('ol');
+
+            
             for(let i = 0; i<missed.length; i+= 1){
+                const heart = document.createElement('img')[i];
+                const li = document.createElement('li')[i];
+                const ol = document.querySelector('ol')[0];
+                //const tries = document.querySelectorAll('.tries')[0];
+                li[i].classList.add('tries');
                 heart.src = '../images/liveHeart.png';
                 heart.height = 35;
                 heart.width = 30;
-                li[i].appendChild(heart);
+                li.appendChild(heart);
                 ol.appendChild(li);
 
             }
