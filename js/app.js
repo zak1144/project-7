@@ -119,26 +119,40 @@ startGame.addEventListener('click', (e) => {
         overlay.classList.remove('win');
         overlay.classList.remove('lose');
         missed = 0;
-        
+        //
         while(ul.children.length> 0){   
                 ul.removeChild(ul.firstChild);
             }
+        // removing the button selection on keyboard and 
+        // resetting disbaled state
         const button = keys.querySelectorAll('button');
         for(let i = 0; i<button.length; i+=1){
                 button[i].disabled = false;    
                 button[i].classList.remove('chosen');
         }
+        //resetting another phrase
         let resetArray = (getRandomPhraseArray(phrases));
         console.log(resetArray);
         addPhraseToDisplay(resetArray);
-    
-        for (let i = 0; i<tries.length; i+= 1)
-            
-                let heartIcon = document.querySelectorAll('img')[0];
-                heartIcon.src = '../images/liveHeart.png';
-    }
 
-            
+        // appending hearts images
+        
+        
+        if(missed < 5){
+            const scoreboard = document.querySelector('#scoreboard');
+            const heart = document.createElement('img');
+            const li = document.createElement('li');
+            const ol = document.querySelector('ol');
+            for(let i = 0; i<missed.length; i+= 1){
+                heart.src = '../images/liveHeart.png';
+                heart.height = 35;
+                heart.width = 30;
+                li[i].appendChild(heart);
+                ol.appendChild(li);
+
+            }
+        }  
+    }    
 });    
         
     
