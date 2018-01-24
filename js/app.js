@@ -23,7 +23,7 @@ let phrases = [
     "every saint has a past",
     "every sinner has a future"
 ];
-//function to select a random indexitem of an array 
+//function to select a random index item of an array 
 //and split into a sub array of a string
 
 function getRandomPhraseArray(arr){
@@ -68,18 +68,18 @@ function checkLetter(letterGuessed) {
 }
 function checkWin(){
     const show = document.querySelectorAll('.show');
-    const letter = document.querySelectorAll('.letter');
+    const letter = document.querySelectorAll('.letter');    
     
     if(show.length === letter.length){
         overlay.classList.add('win');
-        overlay.className === 'win';
+        //overlay.className === 'win';
         overlay.style.visibility = 'visible' ;
         startGame.innerHTML = 'Reset';
         title.innerHTML = 'You Win!!';
     }
     if (missed >= 5){
             overlay.classList.add('lose');
-            overlay.className === 'lose';
+            //overlay.className === 'lose';
             overlay.style.visibility = 'visible' ;
             startGame.innerHTML = 'Reset';
             title.innerHTML = 'You loose,Try Again!!'; 
@@ -114,21 +114,31 @@ keys.addEventListener('click', (e) => {
 });
     // event listener if reset button is pressed
     
-    startGame.addEventListener('click', (e) => {
-        if( e.target.textContent === 'Reset'){       
-            overlay.classList.remove('win');
-            overlay.classList.remove('lose');
-            missed = 0;
-            ul.innerHTML = '';
+startGame.addEventListener('click', (e) => {
+    if( e.target.textContent === 'Reset'){       
+        overlay.classList.remove('win');
+        overlay.classList.remove('lose');
+        missed = 0;
         
-        //for (let i = 0; i<tries.length; i+= 1)
+        while(ul.children.length> 0){   
+                ul.removeChild(ul.firstChild);
+            }
+        const button = keys.querySelectorAll('button');
+        for(let i = 0; i<button.length; i+=1){
+                button[i].disabled = false;    
+                button[i].classList.remove('chosen');
+        }
+        let resetArray = (getRandomPhraseArray(phrases));
+        console.log(resetArray);
+        addPhraseToDisplay(resetArray);
+    
+        for (let i = 0; i<tries.length; i+= 1)
             
-            let heartIcon = document.querySelectorAll('img')[0];
-            heartIcon.src = '../images/liveHeart.png';
+                let heartIcon = document.querySelectorAll('img')[0];
+                heartIcon.src = '../images/liveHeart.png';
+    }
+
+            
+});    
         
-        addPhraseToDisplay(letterArray);
-        const button = document.querySelectorAll('#qwerty button')
-        button.classList.remove('chosen');
-        button.disabled = false;
-        }    
-    });
+    
