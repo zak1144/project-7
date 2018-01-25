@@ -119,7 +119,7 @@ startGame.addEventListener('click', (e) => {
         overlay.classList.remove('win');
         overlay.classList.remove('lose');
         missed = 0;
-        //
+        
         while(ul.children.length> 0){   
                 ul.removeChild(ul.firstChild);
             }
@@ -136,26 +136,25 @@ startGame.addEventListener('click', (e) => {
         addPhraseToDisplay(resetArray);
 
         // appending hearts images
-        
-        
-        if(missed < 5){
-            const scoreboard = document.querySelector('#scoreboard');
+        const scoreboard = document.querySelector('#scoreboard');
+        //const tries = scoreboard.querySelectorAll('.tries');
+       //if(missed <=5 ){
 
-            
-            for(let i = 0; i<missed.length; i+= 1){
-                const heart = document.createElement('img')[i];
-                const li = document.createElement('li')[i];
-                const ol = document.querySelector('ol')[0];
-                //const tries = document.querySelectorAll('.tries')[0];
-                li[i].classList.add('tries');
-                heart.src = '../images/liveHeart.png';
+            for(let i = 0; i<5; i+= 1){
+                
+                const heart = document.createElement('img');
+                const li = document.createElement('li');
+                const ol = document.querySelector('ol');
+                //const tries = scoreboard.querySelectorAll('.tries')[0];
+                li.classList.add('tries');
+                heart.src = './images/liveHeart.png';
                 heart.height = 35;
                 heart.width = 30;
                 li.appendChild(heart);
                 ol.appendChild(li);
 
             }
-        }  
+        //}  
     }    
 });    
         
