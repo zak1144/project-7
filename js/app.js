@@ -1,3 +1,4 @@
+
 const keys = document.querySelector('#qwerty');
 const ul = document.querySelector('#phrase ul');
 let missed = 0;
@@ -118,7 +119,7 @@ startGame.addEventListener('click', (e) => {
     if( e.target.textContent === 'Reset'){       
         overlay.classList.remove('win');
         overlay.classList.remove('lose');
-        missed = 0;
+        //missed = 0;
         
         while(ul.children.length> 0){   
                 ul.removeChild(ul.firstChild);
@@ -140,7 +141,7 @@ startGame.addEventListener('click', (e) => {
         //const tries = scoreboard.querySelectorAll('.tries');
        //if(missed <=5 ){
 
-            for(let i = 0; i<5; i+= 1){
+            for(let i = 0; i<missed; i+= 1){
                 
                 const heart = document.createElement('img');
                 const li = document.createElement('li');
@@ -156,6 +157,7 @@ startGame.addEventListener('click', (e) => {
             }
         //}  
     }    
-});    
+});
+
         
     
