@@ -116,7 +116,8 @@ keys.addEventListener('click', (e) => {
     // event listener if reset button is pressed
     
 startGame.addEventListener('click', (e) => {
-    if( e.target.textContent === 'Reset'){       
+    if( e.target.textContent === 'Reset'){
+           
         overlay.classList.remove('win');
         overlay.classList.remove('lose');
         missed = 0;
@@ -136,12 +137,13 @@ startGame.addEventListener('click', (e) => {
         console.log(resetArray);
         addPhraseToDisplay(resetArray);
 
-        // appending hearts images
-        const scoreboard = document.querySelector('#scoreboard');
-        //const tries = scoreboard.querySelectorAll('.tries');
-       //if(missed <=5 ){
-
-            for(let i = 0; i<missed; i+= 1){
+        // removing hearts images
+        const ol = document.querySelector('ol');
+        while(ol.firstChild){
+            ol.removeChild(ol.firstChild);
+        }
+       //appending heart images
+            for(let i = 0; i<5; i+= 1){
                 
                 const heart = document.createElement('img');
                 const li = document.createElement('li');
