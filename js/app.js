@@ -119,7 +119,7 @@ startGame.addEventListener('click', (e) => {
     if( e.target.textContent === 'Reset'){       
         overlay.classList.remove('win');
         overlay.classList.remove('lose');
-        //missed = 0;
+        missed = 0;
         
         while(ul.children.length> 0){   
                 ul.removeChild(ul.firstChild);
